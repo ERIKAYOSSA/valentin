@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Veux-tu être mon Valentin ?</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff4b5c, #ffb347);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      color: white;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px #000;
+      margin-top: 50px;
+    }
+    .emoji {
+      margin: 20px 0;
+    }
+    .emoji img {
+      width: 200px;
+      height: 250px;
+    }
+    button {
+      border: none;
+      padding: 20px 40px;
+      font-size: 1.5em;
+      color: white;
+      border-radius: 15px;
+      cursor: pointer;
+      position: absolute;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+    #yesBtn {
+      background-color: #ff69b4;
+      left: 40%;
+      top: 65%;
+    }
+    #yesBtn:hover {
+      transform: scale(1.1);
+      background-color: #ff1493;
+    }
+    #noBtn {
+      background-color: #444;
+      left: 55%;
+      top: 65%;
+    }
+    #gif {
+      margin-top: 30px;
+      display: none;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(5px, 0px); }
+      50% { transform: translate(-5px, 0px); }
+      75% { transform: translate(5px, 0px); }
+      100% { transform: translate(0px, 0px); }
+    }
+    .shaking {
+      animation: shake 0.3s;
+    }
+
+    .star {
+      position: fixed;
+      top: -20px;
+      font-size: 1em;
+      color: gold;
+      animation: fall 3s linear forwards;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>💖 Veux-tu être mon Valentin ? 💖</h1>
+  <div class="emoji" id="emoji">
+    <img src="emoji.png" alt="Emoji mignon">
+  </div>
+  <button id="yesBtn">OUI 💘</button>
+  <button id="noBtn">NON 💔</button>
+  <div id="gif">
+    <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="Félicitations">
+  </div>
+
+  <audio id="funSound" src="https://www.myinstants.com/media/sounds/cartoon-jump.mp3"></audio>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const gif = document.getElementById("gif");
+    const emoji = document.getElementById("emoji");
+    const funSound = document.getElementById("funSound");
+
+    yesBtn.addEventListener("click", function() {
+      gif.style.display = "block";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+      emoji.style.display = "none";
+
+      // Pluie d’étoiles continue
+      setInterval(() => {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.textContent = "⭐️";
+        star.style.left = Math.random() * window.innerWidth + "px";
+        star.style.fontSize = (Math.random() * 1 + 0.5) + "em";
+        document.body.appendChild(star);
+
+        setTimeout(() => {
+          star.remove();
+        }, 3000);
+      }, 200); // fréquence des étoiles
+    });
+
+    noBtn.addEventListener("mouseover", function() {
+      noBtn.classList.add("shaking");
+      funSound.currentTime = 0;
+      funSound.play();
+
+      setTimeout(() => {
+        noBtn.classList.remove("shaking");
+
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
+
+        const x = Math.floor(Math.random() * maxX);
+        const y = Math.floor(Math.random() * maxY);
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+
+        const colors = ["#ff0000", "#ffa500", "#008000", "#0000ff", "#800080"];
+        const texts = ["Tu ne peux pas 😜", "Attrape-moi !", "Jamais !", "Essaie encore 🤭", "Non non non !"];
+        noBtn.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        noBtn.textContent = texts[Math.floor(Math.random() * texts.length)];
+      }, 300);
+    });
+  </script>
+</body>
+</html>
