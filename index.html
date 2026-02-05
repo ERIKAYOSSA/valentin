@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Veux-tu être mon Valentin ?</title>
+  <title>Will you be my Valentine ?</title>
   <style>
     body {
       background: linear-gradient(135deg, #ff4b5c, #ffb347);
@@ -82,12 +82,12 @@
   </style>
 </head>
 <body>
-  <h1>💖 Veux-tu être mon Valentin ? 💖</h1>
+  <h1>💖 Will you be my  Valentine ? 💖</h1>
   <div class="emoji" id="emoji">
     <img src="emoji.png" alt="Emoji mignon">
   </div>
-  <button id="yesBtn">OUI 💘</button>
-  <button id="noBtn">NON 💔</button>
+  <button id="yesBtn">YES 💘</button>
+  <button id="noBtn">NO 💔</button>
   <div id="gif">
     <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="Félicitations">
   </div>
@@ -140,7 +140,7 @@
         noBtn.style.top = y + "px";
 
         const colors = ["#ff0000", "#ffa500", "#008000", "#0000ff", "#800080"];
-        const texts = ["Tu ne peux pas 😜", "Attrape-moi !", "Jamais !", "Essaie encore 🤭", "Non non non !"];
+        const texts = ["you can't 😜", "Catch-me !", "Never !", "Try again 🤭", "No no no !"];
         noBtn.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         noBtn.textContent = texts[Math.floor(Math.random() * texts.length)];
       }, 300);
